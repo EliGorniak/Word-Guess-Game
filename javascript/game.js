@@ -41,13 +41,12 @@ function checkLetter(letter) {
     }
     
     if (found === true) {
-        //play sound  
+        //todo: play sound or beep 
         checkVictory();
     }
     else {
         guessedLetters = guessedLetters + letter;
-        //play sound
-        //check letras anteriores nao contar letras ja erradas
+        //todo: play sound or beep
         remainingGuesses--;
         checkGameOver();
     }
@@ -63,7 +62,7 @@ function setCharAt(str, index, chr) {
 function checkDuplicateLetter(letter) {
     for (let i = 0; i < guessedLetters.length; i++) {
         if (guessedLetters[i] === letter) {
-            // play sound;
+            // todo: play sound or beep
             return true;
         }
     }
@@ -94,7 +93,6 @@ function startGame() {
 }
 
 
-
 function updateFields() {
     document.getElementById("currentWord").innerText = guessingCharacter;
     document.getElementById("totalWins").innerText = wins;
@@ -113,5 +111,13 @@ document.onkeyup = function (event) {
         startGame();
         return;
     };
+    if (userGuess.length > 1){
+        // user pressed invalid key (backspace, enter, delete)
+        // ignore the invalid key
+        // todo: beep or sound alarm        
+        return;
+    };
+        
     checkLetter(userGuess);
 };
+// todo: insert time between right word and next game
